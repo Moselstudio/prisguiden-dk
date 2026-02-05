@@ -41,11 +41,10 @@ function StarRating({ rating }: { rating: number }) {
 export default function ProductCard({ product }: ProductCardProps) {
   const { isFavorite, addFavorite, removeFavorite } = useFavorites()
   const isFav = isFavorite(product.id)
-
+  
   const toggleFavorite = (e: React.MouseEvent) => {
-    e.preventDefault() // Prevent navigation
+    e.preventDefault()
     e.stopPropagation()
-    
     if (isFav) {
       removeFavorite(product.id)
     } else {
@@ -59,47 +58,61 @@ export default function ProductCard({ product }: ProductCardProps) {
   }
 
   return (
-    <Link href={`/produkt/${product.slug}`} className="card group block relative">
-      <div className="aspect-square bg-white relative overflow-hidden flex items-center justify-center p-4">
-        <span className="text-5xl text-gray-400">📦</span>
-        
-        {/* Follower badge */}
-        {product.followers && (
-          <div className="absolute top-2 left-2 bg-black/70 text-white text-[10px] px-2 py-1 rounded-full flex items-center gap-1">
-            <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-              <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-            </svg>
-            {product.followers.toLocaleString('da-DK')}
-          </div>
+    <Link href={`/produkt/${product.slug}`} className="glass group block relative rounded-xl overflow-hidden hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-1">
+      {/* Image Container - Slightly lighter background for contrast */}
+      <div className="aspect-square bg-white/5 relative flex items-center justify-center p-6 group-hover:bg-white/10 transition-colors">
+        {product.image_url ? (
+          <img src={product.image_url} alt={product.name} className="object-contain w-full h-full drop-shadow-xl" />
+        ) : (
+          <span className="text-6xl filter drop-shadow-lg">📦</span>
         )}
+        
+        {/* Badges */}
+        <div className="absolute top-2 left-2 flex flex-col gap-1">
+           {product.followers && product.followers > 0 && (
+            <div className="bg-black/60 backdrop-blur-md text-white text-[10px] px-2 py-1 rounded-md flex items-center gap-1 border border-white/10">
+              <svg className="w-3 h-3 text-orange-400" fill="currentColor" viewBox="0 0 20 20"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z" /><path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" /></svg>
+              {product.followers.toLocaleString('da-DK')}
+            </div>
+          )}
+          {product.lowest_price < (product.highest_price || 0) && (
+            <div className="bg-green-500/90 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded-md shadow-lg shadow-green-500/20">
+              Spar {Math.round((1 - product.lowest_price / (product.highest_price || product.lowest_price)) * 100)}%
+            </div>
+          )}
+        </div>
 
-        {/* Heart Icon */}
+        {/* Favorite Button */}
         <button 
           onClick={toggleFavorite}
-          className={`absolute top-2 right-2 p-2 rounded-full transition-colors z-10 ${
+          className={`absolute top-2 right-2 p-2 rounded-full transition-all z-10 hover:scale-110 ${
             isFav 
-              ? 'bg-rose-50 text-rose-500' 
-              : 'bg-transparent text-gray-400 hover:text-rose-500 hover:bg-rose-50'
+              ? 'bg-rose-500 text-white shadow-lg shadow-rose-500/30' 
+              : 'bg-black/20 text-white hover:bg-rose-500 hover:text-white backdrop-blur-sm'
           }`}
         >
-          <svg className="w-5 h-5" fill={isFav ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4" fill={isFav ? "currentColor" : "none"} stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
         </button>
       </div>
 
-      <div className="p-3">
-        <p className="text-xs text-[var(--muted-foreground)] font-medium mb-1">{product.brand}</p>
-        <h3 className="font-medium text-sm group-hover:text-[var(--primary)] transition-colors line-clamp-2 mb-2 min-h-[40px]">{product.name}</h3>
+      <div className="p-4">
+        <p className="text-xs text-orange-400 font-medium mb-1 tracking-wide uppercase">{product.brand}</p>
+        <h3 className="font-bold text-gray-100 text-sm group-hover:text-orange-400 transition-colors line-clamp-2 mb-2 min-h-[40px] leading-snug">
+          {product.name}
+        </h3>
         
         {product.rating && <StarRating rating={product.rating} />}
         
-        <div className="mt-3">
-          {product.shops && <p className="text-xs text-[var(--muted-foreground)] mb-0.5">fra {product.shops} butikker</p>}
+        <div className="mt-4 flex flex-col gap-1">
           <div className="flex items-baseline gap-2">
-            <span className="text-[var(--primary)] font-bold text-lg">{product.lowest_price.toLocaleString('da-DK')} kr.</span>
+            <span className="text-white font-extrabold text-lg tracking-tight">{product.lowest_price.toLocaleString('da-DK')} kr.</span>
+            {product.highest_price && product.lowest_price < product.highest_price && (
+              <span className="text-xs text-gray-500 line-through decoration-gray-600">{product.highest_price.toLocaleString('da-DK')} kr.</span>
+            )}
           </div>
+          {product.shops && <p className="text-[10px] text-gray-400 font-medium">fra {product.shops} butikker</p>}
         </div>
       </div>
     </Link>

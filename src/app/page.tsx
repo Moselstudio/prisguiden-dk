@@ -38,143 +38,106 @@ const categories = [
 
 export default function HomePage() {
   return (
-    <div>
-      {/* Dark Hero Section - Pricerunner Style */}
-      <section className="hero-dark relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a1a2e] via-[#16213e] to-[#0f0f1a] z-0" />
-        <div className="absolute right-0 top-0 bottom-0 w-1/2 opacity-40 z-0" style={{
-          background: 'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 400\'%3E%3Ccircle cx=\'200\' cy=\'200\' r=\'150\' fill=\'%23E85D04\' opacity=\'0.1\'/%3E%3C/svg%3E") center/cover'
-        }} />
+    <div className="overflow-x-hidden">
+      {/* Cinematic Hero Section - V3 */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[#0f172a] z-0" />
+        <div className="absolute top-[-10%] right-[-10%] w-[800px] h-[800px] bg-purple-500/20 rounded-full blur-[120px] pointer-events-none animate-pulse-slow" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[100px] pointer-events-none" />
         
-        <div className="container-prisguiden relative z-10 py-16 md:py-24">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
-                Søg, sammenlign og spar<br />
-                <span className="text-[var(--primary)]">Find dit næste tilbud i dag</span>
-              </h1>
-              <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-lg">
-                Hos Prisguiden kan du sammenligne priser på <strong className="text-white">8,1 millioner produkter</strong> fra <strong className="text-white">6.900 butikker</strong>
-              </p>
-              
-              {/* Large Search Bar */}
-              <div className="max-w-xl">
-                <div className="flex bg-white rounded-full shadow-2xl overflow-hidden">
-                  <div className="flex items-center gap-3 flex-1 px-6">
-                    <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
-                    <input 
-                      type="text" 
-                      placeholder="Hvad kan vi hjælpe med i dag?" 
-                      className="flex-1 py-4 text-lg outline-none text-gray-800"
-                    />
-                  </div>
-                  <button className="bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white px-8 py-4 font-semibold transition-colors flex items-center gap-2">
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
+        {/* Animated Particles/Grid can be added here */}
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
+
+        <div className="container-prisguiden relative z-10 py-12 text-center">
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 drop-shadow-2xl">
+            <span className="block text-white mb-2">Fremtidens</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600">
+              Prissammenligning
+            </span>
+          </h1>
+          
+          <p className="text-lg md:text-2xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Vi scanner <strong className="text-white">6.900+ butikker</strong> hvert sekund, så du altid finder den <span className="text-orange-400">laveste pris</span>.
+          </p>
+
+          {/* Floating Search Interface */}
+          <div className="max-w-3xl mx-auto relative group">
+            <div className="absolute -inset-1 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full blur opacity-50 group-hover:opacity-100 transition duration-500"></div>
+            <div className="relative flex items-center bg-[#1e293b]/90 backdrop-blur-xl border border-white/10 rounded-full p-2 shadow-2xl">
+              <svg className="w-6 h-6 ml-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+              <input 
+                type="text" 
+                placeholder="Søg efter produkt, kategori eller mærke..." 
+                className="flex-1 bg-transparent border-none text-white text-lg px-4 py-3 focus:ring-0 focus:outline-none placeholder-gray-500"
+              />
+              <button className="bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-400 hover:to-orange-500 text-white px-8 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105 active:scale-95">
+                Søg
+              </button>
             </div>
             
-            {/* Stats Cards */}
-            <div className="hidden lg:grid grid-cols-2 gap-4">
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <p className="text-4xl font-bold text-white mb-2">8,1M+</p>
-                <p className="text-gray-300">Produkter</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <p className="text-4xl font-bold text-white mb-2">6.900+</p>
-                <p className="text-gray-300">Butikker</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <p className="text-4xl font-bold text-white mb-2">2M+</p>
-                <p className="text-gray-300">Brugere</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/10">
-                <p className="text-4xl font-bold text-[var(--primary)] mb-2">100%</p>
-                <p className="text-gray-300">Gratis</p>
-              </div>
+            {/* Quick Suggestions */}
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              {['iPhone 15', 'PlayStation 5', 'AirPods Pro', 'LEGO', 'Roborock'].map(term => (
+                <button key={term} className="glass px-4 py-1.5 rounded-full text-sm text-gray-300 hover:text-white hover:border-orange-500/50 transition-colors">
+                  {term}
+                </button>
+              ))}
             </div>
           </div>
         </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </section>
 
-      {/* Horizontal Category Bar - Pricerunner Style */}
-      <section className="bg-white border-b border-[var(--border)] sticky top-16 z-40">
+      {/* Modern Bento Category Grid */}
+      <section className="py-20 relative bg-[#0b1120]">
         <div className="container-prisguiden">
-          <div className="flex gap-1 overflow-x-auto scrollbar-hide py-3 -mx-4 px-4">
-            {categories.map((category) => (
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-2">Udforsk Kategorier</h2>
+              <p className="text-gray-400">Find det du leder efter i vores mest populære kategorier</p>
+            </div>
+            <Link href="/kategorier" className="text-orange-400 font-medium hover:text-orange-300 transition-colors flex items-center gap-1">
+              Se alle kategorier 
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {categories.slice(0, 12).map((category, i) => (
               <Link
                 key={category.slug}
                 href={`/kategori/${category.slug}`}
-                className="flex flex-col items-center gap-1 px-4 py-2 rounded-lg hover:bg-[var(--muted)] transition-colors min-w-[80px] text-center group"
+                className={`group relative overflow-hidden rounded-2xl glass p-6 flex flex-col items-center justify-center gap-4 transition-all duration-300 hover:bg-white/10 hover:scale-[1.02] ${i === 0 || i === 1 ? 'md:col-span-2 md:row-span-2 bg-gradient-to-br from-purple-900/40 to-slate-900/40' : ''}`}
               >
-                <span className="text-2xl group-hover:scale-110 transition-transform">{category.icon}</span>
-                <span className="text-xs font-medium text-[var(--muted-foreground)] group-hover:text-[var(--foreground)] whitespace-nowrap">{category.name}</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className={`text-4xl transition-transform group-hover:scale-110 drop-shadow- glow ${i < 2 ? 'text-6xl' : ''}`}>{category.icon}</span>
+                <span className={`font-bold text-gray-200 group-hover:text-white ${i < 2 ? 'text-xl' : 'text-sm'}`}>{category.name}</span>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Today's Best Deals */}
-      <section className="py-12 bg-white">
+      {/* Trending Products Carousel - Glass Cards */}
+      <section className="py-20 bg-gradient-to-b from-[#0b1120] to-[#0f172a]">
         <div className="container-prisguiden">
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <h2 className="text-2xl font-bold">Dagens bedste deals</h2>
-              <p className="text-[var(--muted-foreground)]">De største prisfald de seneste 24 timer</p>
-            </div>
-            <Link href="/prisfald" className="btn btn-outline">
-              Se alle →
-            </Link>
+          <div className="flex items-center gap-4 mb-10">
+            <span className="bg-orange-500/20 text-orange-400 p-2 rounded-lg">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            </span>
+            <h2 className="text-3xl font-bold text-white">Trending Lige Nu</h2>
           </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {deals.map((deal) => (
-              <Link key={deal.id} href={`/produkt/${deal.slug}`} className="card group">
-                <div className="aspect-square bg-[var(--muted)] relative flex items-center justify-center">
-                  <span className="text-6xl">📱</span>
-                  <span className="absolute top-3 right-3 bg-[var(--success)] text-white text-xs font-bold px-2 py-1 rounded-full">
-                    -{deal.discount}%
-                  </span>
-                </div>
-                <div className="p-4">
-                  <p className="text-xs text-[var(--muted-foreground)] mb-1">fra {deal.shops} butikker</p>
-                  <h3 className="font-semibold group-hover:text-[var(--primary)] transition-colors line-clamp-2 mb-2">{deal.name}</h3>
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <span className="text-[var(--primary)] font-bold text-lg">{deal.price.toLocaleString('da-DK')} kr.</span>
-                    <span className="text-[var(--muted-foreground)] line-through text-sm">{deal.originalPrice.toLocaleString('da-DK')} kr.</span>
-                  </div>
-                  <div className="flex items-center gap-1 text-[var(--success)] text-sm mt-1">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                    </svg>
-                    <span className="font-semibold">{deal.drop} kr. prisfald</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Trending Products - Enhanced Cards */}
-      <section className="py-12 bg-[var(--muted)]">
-        <div className="container-prisguiden">
-          <div className="flex justify-between items-center mb-6">
-            <div>
-              <h2 className="text-2xl font-bold">Populære lige nu</h2>
-              <p className="text-[var(--muted-foreground)]">Produkter mange kigger på</p>
-            </div>
-            <Link href="/trending" className="text-[var(--primary)] font-medium hover:underline">
-              Se alle →
-            </Link>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
             {trendingProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -182,53 +145,59 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Prisguiden */}
-      <section className="py-16 bg-[var(--foreground)] text-white">
-        <div className="container-prisguiden">
-          <h2 className="text-3xl font-bold text-center mb-12">Hvorfor vælge Prisguiden?</h2>
-          <div className="grid md:grid-cols-4 gap-8">
-            {[
-              { icon: '🔍', title: 'Find laveste pris', desc: 'Vi scanner tusindvis af butikker for at finde den bedste pris' },
-              { icon: '🔔', title: 'Prisalarmer', desc: 'Få besked når prisen falder på dit yndlingsprodukt' },
-              { icon: '📊', title: 'Prishistorik', desc: 'Se prisudviklingen og køb på det rigtige tidspunkt' },
-              { icon: '⭐', title: 'Anmeldelser', desc: 'Læs hvad andre brugere synes om produktet' },
-            ].map((feature) => (
-              <div key={feature.title} className="text-center">
-                <span className="text-5xl mb-4 block">{feature.icon}</span>
-                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.desc}</p>
-              </div>
+      {/* Daily Deals - Glass Rows */}
+      <section className="py-20 bg-[#0f172a] relative overflow-hidden">
+        {/* Background blobs */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none" />
+
+        <div className="container-prisguiden relative z-10">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-2">Dagens Deals ⚡️</h2>
+              <p className="text-gray-400">Vi har fundet {deals.length} produkter med store prisfald i dag</p>
+            </div>
+            <Link href="/prisfald" className="btn btn-outline border-white/20 text-white hover:bg-white/10">
+              Se alle tilbud
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {deals.map((deal) => (
+              <Link key={deal.id} href={`/produkt/${deal.slug}`} className="glass rounded-xl p-0 overflow-hidden group hover:border-orange-500/50 transition-colors">
+                <div className="relative h-48 bg-[#1e293b] flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-500">
+                  <span className="text-8xl drop-shadow-2xl">📦</span>
+                  <div className="absolute top-3 right-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                    -{deal.discount}%
+                  </div>
+                </div>
+                <div className="p-5">
+                  <h3 className="font-bold text-white text-lg mb-2 truncate group-hover:text-orange-400 transition-colors">{deal.name}</h3>
+                  <div className="flex items-baseline gap-3 mb-3">
+                    <span className="text-2xl font-bold text-orange-400">{deal.price.toLocaleString('da-DK')} kr.</span>
+                    <span className="text-sm text-gray-500 line-through">{deal.originalPrice.toLocaleString('da-DK')} kr.</span>
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-green-400 flex items-center gap-1 font-medium">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" /></svg>
+                      Spar {deal.drop} kr.
+                    </span>
+                    <span className="text-gray-500">{deal.shops} butikker</span>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-12 bg-[var(--primary)]">
-        <div className="container-prisguiden text-center text-white">
-          <h2 className="text-2xl font-bold mb-2">Gå ikke glip af de bedste tilbud</h2>
-          <p className="mb-6 opacity-90">Tilmeld dig vores nyhedsbrev og få de bedste tilbud direkte i din indbakke.</p>
-          <form className="max-w-md mx-auto flex gap-2">
-            <input 
-              type="email" 
-              placeholder="Din email adresse" 
-              className="flex-1 px-4 py-3 rounded-lg text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]"
-            />
-            <button type="submit" className="btn bg-white text-[var(--primary)] font-bold hover:bg-gray-100">
-              Tilmeld
-            </button>
-          </form>
-        </div>
-      </section>
-
       {/* Floating "Mine produkter" button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <button className="bg-[var(--foreground)] hover:bg-gray-800 text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 transition-all hover:scale-105">
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="fixed bottom-8 right-8 z-50">
+        <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-400 hover:to-red-400 text-white px-6 py-4 rounded-full shadow-2xl shadow-orange-500/30 flex items-center gap-3 transition-all transform hover:scale-105 hover:-translate-y-1 font-bold">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
           </svg>
           Mine produkter
-          <span className="bg-[var(--primary)] text-white text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+          <span className="bg-white text-orange-600 text-xs font-extrabold px-2 py-0.5 rounded-full">0</span>
         </button>
       </div>
     </div>
