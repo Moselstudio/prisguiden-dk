@@ -245,9 +245,25 @@ body {
   color: var(--primary);
 }
 
-/* Hero Section */
+/* Hero Section - Light */
 .hero-gradient {
   background: linear-gradient(135deg, #fff5f0 0%, #ffffff 50%, #fff8f5 100%);
+}
+
+/* Hero Section - Dark (Pricerunner Style) */
+.hero-dark {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f1a 100%);
+  min-height: 400px;
+}
+
+/* Scrollbar Hide Utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* Retailer Logo Row */

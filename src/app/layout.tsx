@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
+import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import "./globals.css";
+import { FavoritesProvider } from "@/components/FavoritesContext";
+import { FloatingFavorites } from "@/components/FloatingFavorites";
 
 export const metadata: Metadata = {
   title: "Prisguiden.dk - Sammenlign priser og find de bedste tilbud",
-  description: "Danmarks førende prissammenligningstjeneste. Sammenlign priser fra hundredvis af butikker og find de bedste tilbud på elektronik, hvidevarer, mode og meget mere.",
-  keywords: "prissammenligning, tilbud, prisfald, bedste pris, online shopping, Danmark",
+  description: "Danmarks nye prissammenligningsside. Find de laveste priser på elektronik, tøj, bolig og meget mere.",
 };
 
 export default function RootLayout({
@@ -16,12 +17,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="da">
-      <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-1">
-          {children}
-        </main>
-        <Footer />
+      <body
+        className={`antialiased min-h-screen flex flex-col font-sans`}
+      >
+        <FavoritesProvider>
+          <Navbar />
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
+          <FloatingFavorites />
+        </FavoritesProvider>
       </body>
     </html>
   );
